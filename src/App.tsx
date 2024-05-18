@@ -1,6 +1,4 @@
 import "./App.css";
-import { useTonConnect } from "./hooks/useTonConnect";
-import WebApp from '@twa-dev/sdk'
 import { useState } from "react";
 import ShitcoinImage from './assets/Shitcoin.png';
 
