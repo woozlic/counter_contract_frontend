@@ -1,8 +1,5 @@
 import "./App.css";
-import { TonConnectButton } from "@tonconnect/ui-react";
-import { useMainContract } from "./hooks/useMainContract";
 import { useTonConnect } from "./hooks/useTonConnect";
-import { fromNano } from "ton-core";
 import WebApp from '@twa-dev/sdk'
 import { useState } from "react";
 import ShitcoinImage from './assets/Shitcoin.png';
@@ -13,17 +10,6 @@ function App() {
 
   const incrementCounter = () => {
     setCounterValue(counter_value + 1);
-  };
-
-  const [score, setScore] = useState(86120);
-  const maxEnergy = 172800;
-  const currentEnergy = maxEnergy;
-  const timeRemaining = "14h 28m 3s";
-
-  const { connected } = useTonConnect();
-
-  const showAlert = () => {
-    WebApp.showAlert("Hey there!");
   };
 
   return (
