@@ -18,6 +18,10 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+h1 {
+  font-family: "Montserrat", sans-serif;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -39,4 +43,63 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.card {
+  background-color: #341C52;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.join-team-btn {
+  background-color: #ffffff;
+  color: #341C52;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.score-section {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.rank {
+  font-size: 14px;
+  color: #cd7f32;
+}
+
+.icon-section {
+  margin-bottom: 20px;
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+}
+
+.energy-section {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.actions-section {
+  display: flex;
+  justify-content: space-around; /* или space-between */
+  gap: 10px; /* добавьте зазор, если нужно */
+}
+
+.action-btn {
+  background-color: #ffffff;
+  color: #341C52;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0; /* Обнулите отступы */
 }
