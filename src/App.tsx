@@ -1,13 +1,38 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShitcoinImage from './assets/Shitcoin.png';
 
 function App() {
 
-  const [counter_value, setCounterValue] = useState(0);
+  const [telegramID, setTelegramID] = useState('1');
+  const [shitcoins, setShitcoins] = useState(0);
 
-  const incrementCounter = () => {
-    setCounterValue(counter_value + 1);
+  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
+  useEffect(() => {
+    getApiCounter();
+  }, []);
+
+  const getApiCounter = async () => {
+    try {
+      console.log(telegramID);
+      const response = await fetch(`${apiUrl}/info?telegram_id=${telegramID}`);
+      const data = await response.json();
+      setShitcoins(data.shitcoins);
+    } catch (error) {
+      console.error('Error getting API counter:', error);
+    }
+  };
+
+  const incrementApiCounter = async () => {
+    try {
+      console.log(telegramID);
+      const response = await fetch(`${apiUrl}/click?telegram_id=${telegramID}`);
+      const data = await response.json();
+      setShitcoins(data.shitcoins);
+    } catch (error) {
+      console.error('Error incrementing API counter:', error);
+    }
   };
 
   return (
@@ -30,10 +55,10 @@ function App() {
         <div className='Card'>
           <h1>Shitcoin</h1>
           <div className="score-section">
-            <h2>{counter_value}</h2>
+            <h2>{shitcoins}</h2>
           </div>
           <div className="icon-section">
-            <img onClick={incrementCounter} src={ShitcoinImage} alt="icon" className="icon" />
+            <img onClick={incrementApiCounter} src={ShitcoinImage} alt="icon" className="icon" />
           </div>
           <div className="actions-section">
             <button className="action-btn">💰 Earn</button>
