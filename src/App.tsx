@@ -1,13 +1,16 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import ShitcoinImage from './assets/Shitcoin.png';
+import { WebApp } from "@grammyjs/web-app";
 
 function App() {
+  console.log(WebApp.initData);
+  WebApp.ready();
 
   const [telegramID, setTelegramID] = useState('1');
   const [shitcoins, setShitcoins] = useState(0);
 
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+  const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   useEffect(() => {
     setTelegramID(localStorage.getItem('telegramID') || '1');
@@ -16,7 +19,6 @@ function App() {
 
   const getApiCounter = async () => {
     try {
-      console.log(telegramID);
       const response = await fetch(`${apiUrl}/info?telegram_id=${telegramID}`);
       const data = await response.json();
       setShitcoins(data.shitcoins);
@@ -27,7 +29,6 @@ function App() {
 
   const incrementApiCounter = async () => {
     try {
-      console.log(telegramID);
       const response = await fetch(`${apiUrl}/click?telegram_id=${telegramID}`);
       const data = await response.json();
       setShitcoins(data.shitcoins);
