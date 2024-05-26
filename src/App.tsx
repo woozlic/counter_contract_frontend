@@ -5,35 +5,29 @@ import { WebApp } from "@grammyjs/web-app";
 
 function App() {
   console.log(WebApp.initData);
-  WebApp.ready();
-  const [telegramID, setTelegramID] = useState('1');
   const [shitcoins, setShitcoins] = useState(0);
 
-  const apiUrl = import.meta.env.VITE_APP_API_URL;
+  const apiUrl = import.meta.env.VITE_APP_API_URL || "http://194.247.183.21:8080";
   console.log(apiUrl);
 
   useEffect(() => {
-    setTelegramID(localStorage.getItem('telegramID') || '1');
-    getApiCounter();
+    WebApp.ready();
+    ApiCounter(0);
   }, []);
 
-  const getApiCounter = async () => {
+  const ApiCounter = async (increment: number) => {
     try {
-      const response = await fetch(`${apiUrl}/info?telegram_id=${telegramID}`);
+      const response = await fetch(`${apiUrl}/counter`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ initData: WebApp.initData, increment }),
+      });
       const data = await response.json();
       setShitcoins(data.shitcoins);
     } catch (error) {
       console.error('Error getting API counter:', error);
-    }
-  };
-
-  const incrementApiCounter = async () => {
-    try {
-      const response = await fetch(`${apiUrl}/click?telegram_id=${telegramID}`);
-      const data = await response.json();
-      setShitcoins(data.shitcoins);
-    } catch (error) {
-      console.error('Error incrementing API counter:', error);
     }
   };
 
@@ -60,7 +54,7 @@ function App() {
             <h2>{shitcoins}</h2>
           </div>
           <div className="icon-section">
-            <img onClick={incrementApiCounter} src={ShitcoinImage} alt="icon" className="icon" />
+            <img onClick={() => ApiCounter(1)} src={ShitcoinImage} alt="icon" className="icon" />
           </div>
           <div className="actions-section">
             <button className="action-btn">💰 Earn</button>
