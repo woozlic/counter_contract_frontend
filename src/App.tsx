@@ -10,6 +10,7 @@ function App() {
   const [shitcoins, setShitcoins] = useState(0);
 
   const apiUrl = import.meta.env.VITE_APP_API_URL;
+  console.log(apiUrl);
 
   useEffect(() => {
     setTelegramID(localStorage.getItem('telegramID') || '1');
