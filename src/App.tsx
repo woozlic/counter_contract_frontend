@@ -6,7 +6,6 @@ import { WebApp } from "@grammyjs/web-app";
 function App() {
   console.log(WebApp.initData);
   WebApp.ready();
-
   const [telegramID, setTelegramID] = useState('1');
   const [shitcoins, setShitcoins] = useState(0);
 
